@@ -1,4 +1,4 @@
-import { useNavigate, useRoutes } from "react-router";
+import { useRoutes } from "react-router";
 import routes from "./routes";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import useTheme from "./hooks/useTheme";
@@ -7,7 +7,7 @@ import { Suspense, useEffect } from "react";
 import { THEMES } from "./context/constants";
 import createEmotionCache from "./utils/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
-import { LinearProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 const clientSideEmotionCache = createEmotionCache();
 
 const loaderStyle = {
@@ -31,7 +31,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
     <>
       <CacheProvider value={emotionCache}>
         <MuiThemeProvider theme={createTheme(theme)}>
-          <Suspense fallback={<LinearProgress sx={loaderStyle}/>}>{content}</Suspense>
+          <Suspense fallback={<CircularProgress sx={loaderStyle}/>}>{content}</Suspense>
         </MuiThemeProvider>
       </CacheProvider>
     </>

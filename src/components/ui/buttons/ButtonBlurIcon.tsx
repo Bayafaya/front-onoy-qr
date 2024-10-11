@@ -8,7 +8,7 @@ const ButtonBlurIcon:FC<IconButtonProps> = (props) => {
       sx={{
         border: "1px solid rgba(255, 255, 255, 1)",
         backgroundColor: "rgba(255, 255, 255, 0.25)",
-        backdropFilter: "blur(62px)",
+        backdropFilter: "blur(2px)",
         borderRadius: "8px !important",
       }}
     >

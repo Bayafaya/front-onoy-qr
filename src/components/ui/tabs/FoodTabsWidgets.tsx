@@ -16,7 +16,7 @@ const FoodTabsWidgets: FC<FoodTabsWidgetsProps> = (props) => {
     if (currentTab) {
       currentTab.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: "nearest",
         inline: "center",
       });
     }

@@ -1,6 +1,6 @@
 import { MainLayoutAsync } from "./layouts/MainLayout.async";
 import { WelcomeLayoutAsync } from "./layouts/WelcomeLayout.async";
-import Detail from "./pages/detail/Detail";
+import { DetailAsync } from "./pages/detail/Detail.async";
 import { HomeAsync } from "./pages/home/Home.async";
 import Orders from "./pages/orders/Orders";
 import { WelcomeAsync } from "./pages/welcome/Welcome.async";
@@ -32,7 +32,7 @@ const routes = [
     children: [
       {
         path: ":id",
-        element: <Detail />,
+        element: <DetailAsync />,
       },
     ],
   },

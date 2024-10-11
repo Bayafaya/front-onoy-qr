@@ -30,9 +30,9 @@ const typography: TypographyOptions = {
     lineHeight: "28px",
   },
   h3: {
-    fontSize: "1.5rem",
+    fontSize: "24px",
     fontWeight: 600,
-    lineHeight: 1.25,
+    lineHeight: "32px",
   },
   h4: {
     fontSize: "1.0625rem",
