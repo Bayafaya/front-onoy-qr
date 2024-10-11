@@ -2,7 +2,7 @@ import merge from "deepmerge";
 import { THEMES } from "../context/constants";
 
 const typography = {
-  100: "r#F3F3F3",
+  100: "#F3F3F3",
   200: "#E8E8E8",
   300: "#D0D0D0",
   400: "#A1A1A1",
@@ -26,7 +26,7 @@ const defaultVariant = {
     },
     secondary: {
       main: accent[100],
-      contrastText: "#FFF",
+      contrastText: typography[500],
     },
     white: "#FFF",
     background: {

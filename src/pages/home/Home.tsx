@@ -5,10 +5,11 @@ import { useTheme } from "@emotion/react";
 import FoodIcon from "../../assets/ui/FoodIcon";
 import { useNavigate } from "react-router";
 import SearchInput from "../../components/ui/inputs/SearchInput";
-import FoodTabsWidgets from "./widgets/FoodTabsWidgets";
+import FoodTabsWidgets from "../../components/ui/tabs/FoodTabsWidgets";
 import { useState } from "react";
-import { TabContext, TabPanel } from "@mui/lab";
-
+import { TabContext } from "@mui/lab";
+import ProductCard from "../../components/ui/cards/ProductCard";
+import TabCustomPanel from "../../components/ui/tabs/TabCustomPanel";
 
 const tabList = [
   "Food",
@@ -26,9 +27,8 @@ const Home = () => {
   const [tab, setTab] = useState<string>("0");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTab(newValue.toString());  
+    setTab(newValue.toString());
   };
-
 
   return (
     <Box>
@@ -55,9 +55,27 @@ const Home = () => {
         <SearchInput placeholder="Search Food" />
       </Box>
       <TabContext value={tab}>
-        <FoodTabsWidgets value={+tab} tabList={tabList} onChange={handleChange} />
-        <TabPanel value={"0"} >Item One</TabPanel>
-        <TabPanel value={"1"} >Item two</TabPanel>
+        <FoodTabsWidgets
+          value={+tab}
+          tabList={tabList}
+          onChange={handleChange}
+        />
+        <TabCustomPanel value={"0"}>
+          <ProductCard onClick={()=>navigate("/detail/1")}/>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </TabCustomPanel>
+        <TabCustomPanel value={"1"}>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </TabCustomPanel>
       </TabContext>
     </Box>
   );

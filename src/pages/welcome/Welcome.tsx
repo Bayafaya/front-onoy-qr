@@ -4,6 +4,7 @@ import ButtonBlurIcon from "../../components/ui/buttons/ButtonBlurIcon";
 import ButtonBlur from "../../components/ui/buttons/ButtonBlur";
 import OnoyLogo from "../../assets/OnoyLogo";
 import { useNavigate } from "react-router";
+import { useTheme } from "@emotion/react";
 
 const mainGrid = {
   position: "absolute",
@@ -16,12 +17,13 @@ const mainGrid = {
 };
 
 const Welcome = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const theme = useTheme();
   return (
     <Grid2 sx={{ position: "relative", height: "100%", width: "100%" }}>
       <Box sx={{ position: "absolute", right: 0 }}>
         <ButtonBlurIcon>
-          <GlobeIcon color="white" width={28} height={28} />
+          <GlobeIcon color={theme.palette.white} width={28} height={28} />
         </ButtonBlurIcon>
       </Box>
       <Grid2 sx={mainGrid}>
@@ -60,7 +62,7 @@ const Welcome = () => {
         }}
       >
         <OnoyLogo width={60} height={60} />
-        <Typography>ONOY - Упрощай каждый шаг</Typography>
+        <Typography color={theme.palette.white}>ONOY - Упрощай каждый шаг</Typography>
       </Box>
     </Grid2>
   );

@@ -35,14 +35,14 @@ const typography: TypographyOptions = {
     lineHeight: 1.25,
   },
   h4: {
-    fontSize: "1.125rem",
+    fontSize: "1.0625rem",
     fontWeight: 500,
     lineHeight: 1.25,
   },
   h5: {
-    fontSize: "1.0625rem",
-    fontWeight: 500,
-    lineHeight: 1.25,
+    fontSize: "14px",
+    fontWeight: 600,
+    lineHeight: "16px",
   },
   h6: {
     fontSize: "1rem",
@@ -50,7 +50,12 @@ const typography: TypographyOptions = {
     lineHeight: 1.25,
   },
   body1: {
-    fontSize: 13,
+    fontSize: "12px",
+    lineHeight: "16px",
+  },
+  body2: {
+    fontSize: "10px",
+    lineHeight: "14px",
   },
   button: {
     textTransform: "none",

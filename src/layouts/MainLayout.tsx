@@ -7,7 +7,6 @@ import { useTheme } from "@mui/material/styles";
 const Root = styled.div`
   display: flex;
   min-height: 100dvh;
-  transition: all 0.3s ease;
 `;
 
 const AppContent = styled.div`
