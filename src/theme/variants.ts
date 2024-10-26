@@ -28,6 +28,7 @@ const defaultVariant = {
       main: accent[100],
       contrastText: typography[500],
     },
+    gray: typography[600],
     white: "#FFF",
     background: {
       default: accent[700],
