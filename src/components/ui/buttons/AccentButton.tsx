@@ -12,6 +12,7 @@ const AccentButton: FC<ButtonProps> = ({ children }) => {
         borderRadius: "8px",
         fontWeight: 600,
         color: theme.palette.white,
+        height: "48px",
       }}
     >
       {children}

@@ -20,7 +20,7 @@ const BottomFloatCard:FC<CardProps> = ({children}) => {
           height: "100%",
           width: "100%",
           paddingX: "20px !important",
-          paddingY: "24px !important",
+          paddingY: "16px !important",
           position: "relative",
         }}
       >

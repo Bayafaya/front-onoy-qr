@@ -25,7 +25,7 @@ const Counter = () => {
           border: `1px solid ${theme.palette.secondary.contrastText}`,
         }}
       >
-        <MinusIcon width={10} height={10} />
+        <MinusIcon width={16} height={16} />
       </IconButton>
       <Typography
         variant="h3"
@@ -41,7 +41,7 @@ const Counter = () => {
           border: `1px solid ${theme.palette.secondary.contrastText}`,
         }}
       >
-        <PlusIcon width={10} height={10} />
+        <PlusIcon width={16} height={16} />
       </IconButton>
     </Box>
   );
