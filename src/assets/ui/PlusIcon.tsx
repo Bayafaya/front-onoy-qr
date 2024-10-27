@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 type PlusIconProps = {
   color?: string;
@@ -22,14 +22,14 @@ const PlusIcon: FC<PlusIconProps> = ({
       <path
         d="M15 3L15 27"
         stroke={color}
-        stroke-width="5"
-        stroke-linecap="round"
+        strokeWidth="5"
+        strokeLinecap="round"
       />
       <path
         d="M3 15L27 15"
         stroke={color}
-        stroke-width="5"
-        stroke-linecap="round"
+        strokeWidth="5"
+        strokeLinecap="round"
       />
     </svg>
   );
