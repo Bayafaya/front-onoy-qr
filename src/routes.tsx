@@ -2,7 +2,7 @@ import { MainLayoutAsync } from "./layouts/MainLayout.async";
 import { WelcomeLayoutAsync } from "./layouts/WelcomeLayout.async";
 import { DetailAsync } from "./pages/detail/Detail.async";
 import { HomeAsync } from "./pages/home/Home.async";
-import Orders from "./pages/orders/Orders";
+import { OrdersAsync } from "./pages/orders/Oreders.async";
 import { WelcomeAsync } from "./pages/welcome/Welcome.async";
 
 const routes = [
@@ -41,8 +41,8 @@ const routes = [
     path: "/orders",
     children: [
       {
-        path: ":id",
-        element: <Orders />,
+        index: true,
+        element: <OrdersAsync />,
       },
     ],
   },

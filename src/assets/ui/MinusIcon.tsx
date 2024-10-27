@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 type MinusIconProps = {
     color?: string;
@@ -22,8 +22,8 @@ const MinusIcon: FC<MinusIconProps> = ({
       <path
         d="M3 3L27 3"
         stroke={color}
-        stroke-width="5"
-        stroke-linecap="round"
+        strokeWidth="5"
+        strokeLinecap="round"
       />
     </svg>
   );

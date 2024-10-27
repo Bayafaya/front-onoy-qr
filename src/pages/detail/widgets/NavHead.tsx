@@ -19,6 +19,7 @@ const NavHead = () => {
         <ArrowBackIosRoundedIcon
           sx={{
             color: theme.palette.white,
+            fontSize: "28px",
           }}
         />
       </ButtonBlurIcon>
