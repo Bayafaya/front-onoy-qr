@@ -1,26 +1,24 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { FC, useState } from "react";
 import MinusIcon from "../assets/ui/MinusIcon";
 import PlusIcon from "../assets/ui/PlusIcon";
 import { useTheme } from "@emotion/react";
 
 type CounterProps = {
   size?: number;
-}
+  count: number;
+  setCount: (count: number) => void;
+};
 
-const Counter:FC<CounterProps> = ({
-  size = 16
-}) => {
+const Counter = ({ size = 16, count, setCount }: CounterProps) => {
   const theme = useTheme();
-  const [count, setCount] = useState(0);
 
   const decrement = () => {
-    if (count <= 0) return;
-    setCount((prev) => prev - 1);
+    if (count <= 1) return;
+    setCount(count - 1);
   };
   const increment = () => {
     if (count >= 50) return;
-    setCount((prev) => prev + 1);
+    setCount(count + 1);
   };
 
   return (
@@ -34,7 +32,7 @@ const Counter:FC<CounterProps> = ({
         <MinusIcon width={size} height={size} />
       </IconButton>
       <Typography
-        variant={size === 8 ? "h5" :"h3"}
+        variant={size === 8 ? "h5" : "h3"}
         color={theme.palette.gray}
         textAlign="center"
         width="30px"

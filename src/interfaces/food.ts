@@ -5,31 +5,30 @@ export interface IFood {
   type: string;
   category: string;
   cook_time: number;
-  cost: number;
-  options: IFoodOPtions[];
+  options: IFoodOptions[];
   modifiers: IFoodModifiers[];
   ingredients: string[];
   allergens: string[];
   nutrition: IFoodNutrition;
   availability: boolean;
-  discount: string;
+  discount: number;
   image_url: string;
   tags: string[];
 }
 
-interface IFoodOPtions {
+export interface IFoodOptions {
   option_name: string;
-  cost: number;
+  cost: number | string;
 }
 
-interface IFoodModifiers {
+export interface IFoodModifiers {
   name: string;
-  additional_cost: number;
+  additional_cost: number | string;
 }
 
-interface IFoodNutrition {
+export interface IFoodNutrition {
   calories: number;
-  fat: string;
-  protein: string;
-  carbs: string;
+  fat: number;
+  protein: number;
+  carbs: number;
 }

@@ -11,7 +11,7 @@ export const useAllIFoods = () => {
 
     try {
       const response = await getAllFoods();
-      setData(response.data);
+      setData(response.data);      
     } catch (error) {
       console.log(error);
     } finally {

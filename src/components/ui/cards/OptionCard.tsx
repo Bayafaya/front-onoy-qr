@@ -8,7 +8,7 @@ interface OptionCardProps extends CardProps {
 
 const OptionCard: FC<OptionCardProps> = (props) => {
   const theme = useTheme();
-  
+
   return (
     <Card
       {...props}
@@ -25,6 +25,7 @@ const OptionCard: FC<OptionCardProps> = (props) => {
             : theme.palette.primary.contrastText,
           0.16
         ),
+        transition: "all 0.3s",
       }}
     >
       <CardContent
