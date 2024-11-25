@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import {
   Box,
   Card,
@@ -10,7 +9,13 @@ import {
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
-const ProductCard: FC<CardContentProps> = (props) => {
+interface ProductCardProps extends CardContentProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
+const ProductCard = (props: ProductCardProps) => {
   const theme = useTheme();
   return (
     <Card
@@ -20,6 +25,7 @@ const ProductCard: FC<CardContentProps> = (props) => {
         height: "120px",
         display: "flex",
         alignItems: "center",
+        cursor: "pointer",
       }}
       {...props}
     >
@@ -31,7 +37,7 @@ const ProductCard: FC<CardContentProps> = (props) => {
           borderRadius: "12px",
           marginX: "16px",
         }}
-        image="src/assets/images.jpg"
+        image={props.image}
         alt="Live from space album cover"
       />
       <CardContent
@@ -56,7 +62,7 @@ const ProductCard: FC<CardContentProps> = (props) => {
             WebkitLineClamp: 1,
           }}
         >
-          Beef, vegetables and sesame
+          {props.title}
         </Typography>
         <Typography
           variant="body1"
@@ -70,8 +76,7 @@ const ProductCard: FC<CardContentProps> = (props) => {
             WebkitLineClamp: 2,
           }}
         >
-          Lizards are a widespread group of squamate reptilesa sdjasuogd
-          asjbdouasg bdaugduahsd
+          {props.description}
         </Typography>
         <Box display="flex" alignItems="end" justifyContent="space-between">
           <Grid2>

@@ -8,32 +8,47 @@ import AdditionalWidget from "./widgets/AdditionalWidget";
 import BottomFloatCard from "../../components/ui/float/BottomFloatCard";
 import Counter from "../../components/Counter";
 import AccentButton from "../../components/ui/buttons/AccentButton";
-
-const mokText = `Seeds isolated on white background Apple IPhone 14 Pro & iPhone 14 Pro Max
-      Seeds isolated on white background Apple t IPhone 14 Pro & iPhone 14 Pro
-      Max Seeds isolated on white background Apple IPhone 14 Pro & iPhone 14 Pro Max
-      Seeds isolated on white background Apple t IPhone 14 Pro & iPhone 14 Pro
-      MaxSeeds isolated on white background Apple IPhone 14 Pro & iPhone 14 Pro Max
-      Seeds isolated on white background Apple t IPhone 14 Pro & iPhone 14 Pro
-      MaxSeeds isolated on white background Apple IPhone 14 Pro & iPhone 14 Pro Max
-      Seeds isolated on white background Apple t IPhone 14 Pro & iPhone 14 Pro
-      Max Seeds isolated on white background`;
+import { useParams } from "react-router";
+import useSingleFood from "../../hooks/useSingleFood";
 
 const Detail = () => {
+  const { id } = useParams();
+  const {
+    food,
+    selectedOption,
+    setSelectedOption,
+    selectedModifier,
+    setSelectedModifier,
+    totalCost,
+    count,
+    setCount,
+  } = useSingleFood({ id });
+
   return (
     <Box paddingBottom={14}>
-      <HeadImage url="/src/assets/images.jpg" />
+      <HeadImage url={food.image_url} />
       <NavHead />
-      <NameAndPrice name={"Beef, vegetables"} price={"350 с"} />
-      <DescriptionText text={mokText} />
+      <NameAndPrice
+        name={food.name || "name"}
+        price={`${totalCost || "0"} с`}
+      />
+      <DescriptionText text={food.description} />
       <Grid2 display="grid" gap={4}>
-        <OptionsWidgets active />
-        <OptionsWidgets />
+        <OptionsWidgets
+          active={!!selectedOption.option_name ? false : true}
+          foodOptions={food.options}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
       </Grid2>
-      <AdditionalWidget />
+      <AdditionalWidget
+        foodModifiers={food.modifiers}
+        selectedModifier={selectedModifier}
+        setSelectedModifier={setSelectedModifier}
+      />
       <BottomFloatCard>
         <Box display="flex" alignItems="center" gap={4}>
-          <Counter />
+          <Counter count={count} setCount={setCount}/>
           <AccentButton>Add to card</AccentButton>
         </Box>
       </BottomFloatCard>

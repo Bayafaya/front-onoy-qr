@@ -6,6 +6,7 @@ import { TabContext } from "@mui/lab";
 import ProductCard from "../../components/ui/cards/ProductCard";
 import TabCustomPanel from "../../components/ui/tabs/TabCustomPanel";
 import NavigationWidgets from "./widgets/NavigationWidgets";
+import useAllIFoods from "../../hooks/useAllIFoods";
 
 const tabList = [
   "Food",
@@ -18,6 +19,7 @@ const tabList = [
 ];
 
 const Home = () => {
+  const { data } = useAllIFoods();
   const navigate = useNavigate();
   const [tab, setTab] = useState<string>("0");
 
@@ -35,21 +37,22 @@ const Home = () => {
           onChange={handleChange}
         />
         <TabCustomPanel value={"0"}>
-          <ProductCard onClick={() => navigate("/detail/1")} />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {data.map((item) => (
+            <ProductCard
+              key={item.pk}
+              onClick={() => navigate(`/detail/${item.pk}`)}
+              title={item.name}
+              description={item.description}
+              image={item.image_url}
+            />
+          ))}
         </TabCustomPanel>
-        <TabCustomPanel value={"1"}>
+        {/* <TabCustomPanel value={"1"}>
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
-        </TabCustomPanel>
+        </TabCustomPanel> */}
       </TabContext>
     </Box>
   );

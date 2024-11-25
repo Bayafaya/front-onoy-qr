@@ -28,7 +28,7 @@ const DescriptionText: FC<DescriptionTextProps> = ({ text }) => {
       my={6}
     >
       {text}
-      <Button
+      {text.length > 200 && <Button
         onClick={toggleShowMore}
         sx={{
           paddingY: 0,
@@ -53,7 +53,7 @@ const DescriptionText: FC<DescriptionTextProps> = ({ text }) => {
         >
           {showMore ? "Show less" : "...more"}
         </Typography>
-      </Button>
+      </Button>}
     </Typography>
   );
 };
