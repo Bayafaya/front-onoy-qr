@@ -7,4 +7,7 @@ export default defineConfig({
   define: {
     global: 'window', // This makes `global` reference `window` in the browser
   },
+  server: {
+    port: 3000,
+  }
 })

@@ -2,12 +2,13 @@ import { useTheme } from "@emotion/react";
 import { Button, ButtonProps } from "@mui/material";
 import { FC } from "react";
 
-const AccentButton: FC<ButtonProps> = ({ children }) => {
+const AccentButton: FC<ButtonProps> = (props) => {
   const theme = useTheme();
   return (
     <Button
       fullWidth
       variant="contained"
+      {...props}
       sx={{
         borderRadius: "8px",
         fontWeight: 600,
@@ -15,7 +16,7 @@ const AccentButton: FC<ButtonProps> = ({ children }) => {
         height: "48px",
       }}
     >
-      {children}
+      {props.children}
     </Button>
   );
 };

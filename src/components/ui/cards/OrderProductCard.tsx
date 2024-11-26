@@ -16,15 +16,21 @@ import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Counter from "../../Counter";
 import useHandleColor from "../../../hooks/useHandleColor";
+import { IFoodOrderResponse } from "../../../interfaces/food";
+import "../../../styles/OrderProductCard.css";
 
 interface OrderHeaderProps extends CardContentProps {
   active?: boolean;
   color?: string;
-};
+  item: IFoodOrderResponse;
+  showCounter?: boolean;
+}
 
 const OrderProductCard: FC<OrderHeaderProps> = ({
   active,
   color,
+  item,
+  showCounter,
   ...props
 }) => {
   const theme = useTheme();
@@ -33,6 +39,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
     color,
   });
   const [expanded, setExpanded] = useState(false);
+  const [optionCount, setOptionCount] = useState(item.count);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -43,7 +50,6 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
       sx={{
         borderRadius: "8px",
         boxShadow: " 0px 1px 10px 0px #00000033",
-        // height: "120px",
         display: "flex",
         alignItems: "start",
       }}
@@ -58,7 +64,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
           marginX: "16px",
           mt: "16px",
         }}
-        image="src/assets/images.jpg"
+        image={item.image_url}
         alt="Live from space album cover"
       />
       <CardContent
@@ -83,11 +89,12 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
             WebkitLineClamp: 1,
           }}
         >
-          Beef, vegetables and sesame
+          {item.name}
         </Typography>
         <Typography
           variant="body1"
           mb={2}
+          pt={1}
           sx={{
             color: theme.palette.secondary.contrastText,
             width: "100%",
@@ -99,65 +106,104 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
             pr: 8,
           }}
         >
-          Lizards are a widespread group of squamate reptilesa sdjasuogd
-          asjbdouasg bdaugduahsd
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-            sx={{
-              position: "absolute",
-              bottom: -4,
-              right: 0,
-            }}
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          {item.description}
+          {item.modifiers.length && (
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+              sx={{
+                position: "absolute",
+                bottom: -4,
+                right: 0,
+              }}
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          )}
         </Typography>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent sx={{ p: 0 }}>
-            <Typography sx={{ marginBottom: 2 }}>Method:</Typography>
-            <Typography sx={{ marginBottom: 2 }}>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+            <Typography
+              variant="body1"
+              color={theme.palette.secondary.contrastText}
+              mb={2}
+            >
+              Опции: <b>{item.options.option_name}</b>
             </Typography>
-            <Typography sx={{ marginBottom: 2 }}>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography sx={{ marginBottom: 2 }}>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that
-              don&apos;t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <Typography
+                variant="body1"
+                color={theme.palette.secondary.contrastText}
+              >
+                Добавки:
+              </Typography>
+              <ul
+                style={{
+                  margin: 0,
+                  paddingLeft: "16px",
+                  width: "100%",
+                }}
+              >
+                {item.modifiers.map((modifier) => (
+                  <li key={modifier.id}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        fontWeight={700}
+                        color={theme.palette.secondary.contrastText}
+                      >
+                        {modifier.name}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color={theme.palette.secondary.contrastText}
+                      >
+                        {modifier.additional_cost} с
+                      </Typography>
+                    </Box>
+                  </li>
+                ))}
+              </ul>
+            </Box>
           </CardContent>
         </Collapse>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Grid2>
-            <Counter size={8} />
+            {showCounter ? (
+              <Counter count={optionCount} setCount={setOptionCount} size={8} />
+            ) : (
+              <Typography
+                variant="body2"
+                color={theme.palette.secondary.contrastText}
+                fontWeight={700}
+              >
+                Количество: {optionCount}
+              </Typography>
+            )}
           </Grid2>
           <Typography
             variant="h5"
+            display="flex"
+            align="center"
+            gap={1}
             sx={{
               color: getColor,
             }}
           >
-            350 с
+            <Typography fontWeight={700}>Итог:</Typography> {item.discount_cost}{" "}
+            с
           </Typography>
         </Box>
       </CardContent>

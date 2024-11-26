@@ -5,9 +5,10 @@ import useHandleColor from "../../../hooks/useHandleColor";
 type OrderHeaderProps = {
   active?: boolean;
   color?: string;
+  totalCost: number;
 };
 
-const OrderHeader: FC<OrderHeaderProps> = ({ active, color }) => {
+const OrderHeader: FC<OrderHeaderProps> = ({ active, color, totalCost }) => {
   const getColor = useHandleColor({
     active,
     color,
@@ -34,7 +35,7 @@ const OrderHeader: FC<OrderHeaderProps> = ({ active, color }) => {
         Львенок
       </Typography>
       <Typography variant="h1" fontWeight={600} color={getColor}>
-        1050 с
+        {totalCost || "0"} с
       </Typography>
     </Grid2>
   );

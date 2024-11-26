@@ -44,15 +44,11 @@ const Home = () => {
               title={item.name}
               description={item.description}
               image={item.image_url}
+              cook_time={item.cook_time}
+              cost={item.options[0].cost as number}
             />
           ))}
         </TabCustomPanel>
-        {/* <TabCustomPanel value={"1"}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </TabCustomPanel> */}
       </TabContext>
     </Box>
   );

@@ -13,6 +13,8 @@ interface ProductCardProps extends CardContentProps {
   title: string;
   description: string;
   image: string;
+  cook_time: number;
+  cost: number;
 }
 
 const ProductCard = (props: ProductCardProps) => {
@@ -94,7 +96,7 @@ const ProductCard = (props: ProductCardProps) => {
                 color: theme.palette.secondary.contrastText,
               }}
             >
-              Ожидание: 20 м
+              Ожидание: {props.cook_time} м
             </Typography>
           </Grid2>
           <Typography
@@ -103,7 +105,7 @@ const ProductCard = (props: ProductCardProps) => {
               color: theme.palette.primary.main,
             }}
           >
-            350 с
+            {props.cost} с
           </Typography>
         </Box>
       </CardContent>

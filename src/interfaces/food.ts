@@ -17,11 +17,13 @@ export interface IFood {
 }
 
 export interface IFoodOptions {
+  id: string;
   option_name: string;
   cost: number | string;
 }
 
 export interface IFoodModifiers {
+  id: string;
   name: string;
   additional_cost: number | string;
 }
@@ -32,3 +34,25 @@ export interface IFoodNutrition {
   protein: number;
   carbs: number;
 }
+
+
+export interface IFoodOrderResponse {
+  pk: string;
+  name: string;
+  description: string;
+  type: string;
+  category: string;
+  cook_time: number;
+  discount_cost: number;
+  count	: number;
+  options: IFoodOptions;
+  modifiers: IFoodModifiers[];
+  ingredients: string[];
+  allergens: string[];
+  nutrition: IFoodNutrition;
+  availability: boolean;
+  discount: number;
+  image_url: string;
+  tags: string[];
+}
+

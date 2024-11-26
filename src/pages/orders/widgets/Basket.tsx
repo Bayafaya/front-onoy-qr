@@ -1,10 +1,20 @@
 import { Box } from "@mui/material";
 import OrderCard from "./OrderCard";
+import { IClientItems } from "../../../interfaces/order";
 
-const Basket = () => {
+type BasketProps = {
+  basketList: IClientItems["bucket"];
+};
+
+const Basket = ({ basketList }: BasketProps) => {
   return (
-    <Box>
-      <OrderCard color="#17784D" />
+    <Box
+      sx={{
+        display: "grid",
+        gap: 3,
+      }}
+    >
+      <OrderCard showCounter={true} active list={basketList} color="#17784D" />
     </Box>
   );
 };
