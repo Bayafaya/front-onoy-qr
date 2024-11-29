@@ -3,18 +3,55 @@ import OptionCard from "../../../components/ui/cards/OptionCard";
 import OrderHeader from "../ui/OrderHeader";
 import OrderProductCard from "../../../components/ui/cards/OrderProductCard";
 import { Box } from "@mui/material";
+import { IClientItems } from "../../../interfaces/order";
 
 type OrderCardProps = {
-  active?: boolean;
+  list: IClientItems["bucket"];
   color?: string;
+  showCounter?: boolean;
+  name?: string;
+  avatar?: string;
+  handleChangeCount?: (value: {
+    [key: string]: number;
+    totalCost: number;
+  }) => void;
 };
 
-const OrderCard: FC<OrderCardProps> = ({ active, color }) => {
+const OrderCard: FC<OrderCardProps> = ({
+  list,
+  avatar,
+  color,
+  showCounter,
+  name,
+  handleChangeCount,
+}) => {
+  const totalCountOfItems = () => {
+    return list?.items.reduce((acc, item) => {
+      return acc + item.discount_cost;
+    }, 0);
+  };
   return (
-    <OptionCard active={active}>
+    <OptionCard color={color}>
       <Box display="grid" gap={4}>
-        <OrderHeader active={active} color={color} />
-        <OrderProductCard active={active} color={color}/>
+        {list && (
+          <OrderHeader
+            totalCost={!showCounter ? totalCountOfItems() : undefined}
+            color={color}
+            name={name}
+            avatar={avatar}
+          />
+        )}
+        {list &&
+          list.items.map((item, index) => (
+            <div key={index}>
+              <OrderProductCard
+                handleChangeCount={handleChangeCount}
+                showCounter={showCounter}
+                item={item}
+                color={color}
+              />
+            </div>
+          ))}
       </Box>
     </OptionCard>
   );

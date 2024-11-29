@@ -17,7 +17,7 @@ const Orders = () => {
   };
 
   return (
-    <Box>
+    <Box paddingBottom={18}>
       <NavigationOrders />
       <TabContext value={tab}>
         <FoodTabsWidgets

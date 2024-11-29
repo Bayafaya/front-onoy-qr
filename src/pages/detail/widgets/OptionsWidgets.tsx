@@ -41,7 +41,7 @@ const OptionsWidgets = ({
           Опции
         </Typography>
         <FoodRequireTag active={active}>
-          {!!active ? "Обязательно" : "Выбрано"}
+          {active ? "Обязательно" : "Выбрано"}
         </FoodRequireTag>
       </Box>
       <Typography variant="body2" fontWeight={500} mb={3}>
@@ -65,7 +65,7 @@ const OptionsWidgets = ({
                 },
               }}
               label={
-                <Label option_name={option.option_name} cost={option.cost} />
+                <Label id={option.id} option_name={option.option_name} cost={option.cost} />
               }
             />
           ))}

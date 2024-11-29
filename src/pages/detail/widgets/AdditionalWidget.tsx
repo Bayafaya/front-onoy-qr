@@ -11,6 +11,7 @@ import {
 import { IFoodModifiers } from "../../../interfaces/food";
 import CheckedIcon from "../../../assets/ui/CheckedIcon";
 import NonCheckedIcon from "../../../assets/ui/NonCheckedIcon";
+import { SyntheticEvent } from "react";
 
 type AdditionalWidgetProps = {
   foodModifiers: IFoodModifiers[];
@@ -23,15 +24,20 @@ const AdditionalWidget = ({
   selectedModifier,
   setSelectedModifier,
 }: AdditionalWidgetProps) => {
-
-  const handleChange = (event: any) => {
-    const value = event.target.value;
-    if (event.target.checked) {
-      const result = foodModifiers.find((modifier) => modifier.name === value);
-      result && setSelectedModifier([...selectedModifier, result]);
+  const handleChange = (
+    event: SyntheticEvent,
+    checked: boolean
+  ) => {
+    const value = (event.target as HTMLInputElement).value as string;
+    const result = foodModifiers.find((modifier) => modifier.id === value);
+    if (!result) return;
+    if (checked) {
+      setSelectedModifier([...selectedModifier, result]);
     } else {
-      setSelectedModifier(selectedModifier.filter((modifier) => modifier.name !== value));
-    }    
+      setSelectedModifier(
+        selectedModifier.filter((modifier) => modifier.id !== value)
+      );
+    }
   };
 
   return (
@@ -53,9 +59,10 @@ const AdditionalWidget = ({
             onChange={handleChange}
             slotProps={{ typography: { width: "100%" } }}
             control={<BpCheckBox />}
-            value={modifier.name}
+            value={modifier.id}
             label={
               <Label
+                id={modifier.id}
                 name={modifier.name}
                 additional_cost={modifier.additional_cost}
               />

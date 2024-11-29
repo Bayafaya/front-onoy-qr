@@ -34,12 +34,14 @@ export const useSingleFood = ({ id }: IGetFoodProps) => {
     cook_time: 0,
     options: [
       {
+        id: "",
         option_name: "",
         cost: "",
       },
     ],
     modifiers: [
       {
+        id: "",
         name: "",
         additional_cost: "",
       },

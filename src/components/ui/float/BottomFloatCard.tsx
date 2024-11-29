@@ -1,7 +1,11 @@
 import { Card, CardContent, CardProps } from "@mui/material";
 import { FC } from "react";
 
-const BottomFloatCard:FC<CardProps> = ({children}) => {
+interface CardProp extends CardProps {
+  bgColor?: string;
+}
+
+const BottomFloatCard: FC<CardProp> = (props) => {
   return (
     <Card
       sx={{
@@ -13,7 +17,9 @@ const BottomFloatCard:FC<CardProps> = ({children}) => {
         borderRadius: 0,
         zIndex: 1000,
         boxShadow: "0px -2px 4px rgba(0, 0, 0, 0.1)",
+        backgroundColor: props.bgColor || "#fff",
       }}
+      {...props}
     >
       <CardContent
         sx={{
@@ -24,7 +30,7 @@ const BottomFloatCard:FC<CardProps> = ({children}) => {
           position: "relative",
         }}
       >
-        {children}
+        {props.children}
       </CardContent>
     </Card>
   );

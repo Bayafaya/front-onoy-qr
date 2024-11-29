@@ -23,15 +23,18 @@ function App({ emotionCache = clientSideEmotionCache }) {
   const content = useRoutes(routes);
   const { theme, setTheme } = useTheme();
 
-
   useEffect(() => {
     setTheme(THEMES.DEFAULT);
   }, [setTheme]);
+
+  
   return (
     <>
       <CacheProvider value={emotionCache}>
         <MuiThemeProvider theme={createTheme(theme)}>
-          <Suspense fallback={<CircularProgress sx={loaderStyle}/>}>{content}</Suspense>
+          <Suspense fallback={<CircularProgress sx={loaderStyle} />}>
+            {content}
+          </Suspense>
         </MuiThemeProvider>
       </CacheProvider>
     </>
