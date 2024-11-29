@@ -24,6 +24,7 @@ export interface IClientItems {
         _id: string;
         avatar: string;
         color: string;
+        name: string;
     }
     bucket: {
         items: IFoodOrderResponse[];

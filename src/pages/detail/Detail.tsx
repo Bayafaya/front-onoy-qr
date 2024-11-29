@@ -55,7 +55,7 @@ const Detail = () => {
   };
 
   return (
-    <Box paddingBottom={14}>
+    <Box paddingBottom={18}>
       <HeadImage url={food.image_url} />
       <NavHead />
       <NameAndPrice

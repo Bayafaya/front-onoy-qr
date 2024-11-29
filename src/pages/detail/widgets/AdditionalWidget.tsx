@@ -35,7 +35,7 @@ const AdditionalWidget = ({
       setSelectedModifier([...selectedModifier, result]);
     } else {
       setSelectedModifier(
-        selectedModifier.filter((modifier) => modifier.name !== value)
+        selectedModifier.filter((modifier) => modifier.id !== value)
       );
     }
   };

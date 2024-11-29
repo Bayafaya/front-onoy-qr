@@ -15,34 +15,48 @@ import { useTheme } from "@emotion/react";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Counter from "../../Counter";
-import useHandleColor from "../../../hooks/useHandleColor";
 import { IFoodOrderResponse } from "../../../interfaces/food";
 import "../../../styles/OrderProductCard.css";
 
 interface OrderHeaderProps extends CardContentProps {
-  active?: boolean;
-  color?: string;
   item: IFoodOrderResponse;
   showCounter?: boolean;
+  handleChangeCount?: (value: {
+    [key: string]: number;
+    totalCost: number;
+  }) => void;
 }
 
 const OrderProductCard: FC<OrderHeaderProps> = ({
-  active,
-  color,
   item,
   showCounter,
+  handleChangeCount,
   ...props
 }) => {
   const theme = useTheme();
-  const getColor = useHandleColor({
-    active,
-    color,
-  });
   const [expanded, setExpanded] = useState(false);
   const [optionCount, setOptionCount] = useState(item.count);
+  const [totalCost, setTotalCost] = useState(item.discount_cost);
+
+  const handleCountChange = (value: number) => {
+    const result = calcTotalCost(value);
+    setTotalCost(result);
+    setOptionCount(value);
+    if (handleChangeCount)
+      handleChangeCount({ [item._id]: value, totalCost: result });
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const calcTotalCost = (value?: number) => {
+    const optionCost = Number(item.options.cost);
+    const modifierCost = item.modifiers.reduce(
+      (acc, modifier) => acc + Number(modifier.additional_cost),
+      0
+    );
+    return (optionCost + modifierCost) * (value || optionCount);
   };
 
   return (
@@ -125,13 +139,26 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
         </Typography>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent sx={{ p: 0 }}>
-            <Typography
-              variant="body1"
-              color={theme.palette.secondary.contrastText}
-              mb={2}
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
             >
-              Опции: <b>{item.options.option_name}</b>
-            </Typography>
+              <Typography
+                variant="body1"
+                color={theme.palette.secondary.contrastText}
+                mb={2}
+              >
+                Опции: <b>{item.options.option_name}</b>
+              </Typography>
+              <Typography
+                variant="body1"
+                color={theme.palette.secondary.contrastText}
+                mb={2}
+              >
+                {item.options.cost} с
+              </Typography>
+            </Box>
             <Box
               sx={{
                 display: "flex",
@@ -182,7 +209,11 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Grid2>
             {showCounter ? (
-              <Counter count={optionCount} setCount={setOptionCount} size={8} />
+              <Counter
+                count={optionCount}
+                setCount={handleCountChange}
+                size={8}
+              />
             ) : (
               <Typography
                 variant="body2"
@@ -198,12 +229,8 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
             display="flex"
             align="center"
             gap={1}
-            sx={{
-              color: getColor,
-            }}
           >
-            <Typography fontWeight={700}>Итог:</Typography> {item.discount_cost}{" "}
-            с
+            <Typography fontWeight={700}>Итог:</Typography> {totalCost} с
           </Typography>
         </Box>
       </CardContent>

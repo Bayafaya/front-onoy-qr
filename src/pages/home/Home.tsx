@@ -7,21 +7,15 @@ import ProductCard from "../../components/ui/cards/ProductCard";
 import TabCustomPanel from "../../components/ui/tabs/TabCustomPanel";
 import NavigationWidgets from "./widgets/NavigationWidgets";
 import useAllIFoods from "../../hooks/useAllIFoods";
-
-const tabList = [
-  "Food",
-  "Fruits",
-  "Vegetables",
-  "Grocery",
-  "Drinks",
-  "Snacks",
-  "Alcohol",
-];
+import useCategory from "../../hooks/useCategory";
 
 const Home = () => {
-  const { data } = useAllIFoods();
+  const { category } = useCategory();
   const navigate = useNavigate();
   const [tab, setTab] = useState<string>("0");
+  const { data } = useAllIFoods({category, tab});
+
+  
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue.toString());
@@ -33,22 +27,24 @@ const Home = () => {
       <TabContext value={tab}>
         <FoodTabsWidgets
           value={+tab}
-          tabList={tabList}
+          tabList={category}
           onChange={handleChange}
         />
-        <TabCustomPanel value={"0"}>
-          {data.map((item) => (
-            <ProductCard
-              key={item.pk}
-              onClick={() => navigate(`/detail/${item.pk}`)}
-              title={item.name}
-              description={item.description}
-              image={item.image_url}
-              cook_time={item.cook_time}
-              cost={item.options[0].cost as number}
-            />
-          ))}
-        </TabCustomPanel>
+        {category.map((item, index) => (
+          <TabCustomPanel key={item} value={`${index}`}>
+            {data.map((item) => (
+              <ProductCard
+                key={item.pk}
+                onClick={() => navigate(`/detail/${item.pk}`)}
+                title={item.name}
+                description={item.description}
+                image={item.image_url}
+                cook_time={item.cook_time}
+                cost={item.options[0].cost as number}
+              />
+            ))}
+          </TabCustomPanel>
+        ))}
       </TabContext>
     </Box>
   );

@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { getAllFoods } from "../services/ltems";
+import { getFoodByCategory } from "../services/ltems";
 import { IFood } from "../interfaces/food";
 
-export const useAllIFoods = () => {
+export const useAllIFoods = ({ tab, category }: { tab: string, category: string[] }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<IFood[]>([]);
 
   const getListOfLimitedFoods = async () => {
     setIsLoading(true);
-
     try {
-      const response = await getAllFoods();
-      setData(response.data);      
+      const response = await getFoodByCategory(category[+tab]);
+      setData(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -20,8 +19,10 @@ export const useAllIFoods = () => {
   };
 
   useEffect(() => {
-    getListOfLimitedFoods();
-  }, []);
+    if (category.length) {
+      getListOfLimitedFoods();
+    }
+  }, [category, tab]);
 
   return { isLoading, data, getListOfLimitedFoods };
 };

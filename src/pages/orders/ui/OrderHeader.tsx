@@ -1,23 +1,25 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { FC } from "react";
-import useHandleColor from "../../../hooks/useHandleColor";
 
 type OrderHeaderProps = {
-  active?: boolean;
   color?: string;
-  totalCost: number;
+  totalCost?: number;
+  name?: string;
+  avatar?: string;
 };
 
-const OrderHeader: FC<OrderHeaderProps> = ({ active, color, totalCost }) => {
-  const getColor = useHandleColor({
-    active,
-    color,
-  });
+const OrderHeader: FC<OrderHeaderProps> = ({
+  color,
+  totalCost,
+  name,
+  avatar,
+}) => {
+
   return (
     <Grid2 display="flex" alignItems="center" justifyContent="space-between">
       <Box
         sx={{
-          bgcolor: getColor,
+          bgcolor: color,
           width: "44px",
           aspectRatio: "1/1",
           borderRadius: "100%",
@@ -26,16 +28,16 @@ const OrderHeader: FC<OrderHeaderProps> = ({ active, color, totalCost }) => {
         }}
       >
         <img
-          src="/static/lion.png"
+          src={avatar || ''}
           alt="animal"
           style={{ width: "40px", aspectRatio: "1/1" }}
         />
       </Box>
       <Typography variant="h1" mr="auto" ml={3} fontWeight={600}>
-        Львенок
+        {name || "Корзина"}
       </Typography>
-      <Typography variant="h1" fontWeight={600} color={getColor}>
-        {totalCost || "0"} с
+      <Typography variant="h1" fontWeight={600} >
+        {totalCost && `${totalCost} c`}
       </Typography>
     </Grid2>
   );

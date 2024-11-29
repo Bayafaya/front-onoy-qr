@@ -37,6 +37,7 @@ export interface IFoodNutrition {
 
 
 export interface IFoodOrderResponse {
+  _id: string;
   pk: string;
   name: string;
   description: string;

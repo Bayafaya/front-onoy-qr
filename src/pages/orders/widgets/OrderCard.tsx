@@ -7,26 +7,49 @@ import { IClientItems } from "../../../interfaces/order";
 
 type OrderCardProps = {
   list: IClientItems["bucket"];
-  active?: boolean;
   color?: string;
   showCounter?: boolean;
+  name?: string;
+  avatar?: string;
+  handleChangeCount?: (value: {
+    [key: string]: number;
+    totalCost: number;
+  }) => void;
 };
 
-const OrderCard: FC<OrderCardProps> = ({ list, active, color, showCounter }) => {
+const OrderCard: FC<OrderCardProps> = ({
+  list,
+  avatar,
+  color,
+  showCounter,
+  name,
+  handleChangeCount,
+}) => {
+  const totalCountOfItems = () => {
+    return list?.items.reduce((acc, item) => {
+      return acc + item.discount_cost;
+    }, 0);
+  };
   return (
-    <OptionCard active={active}>
+    <OptionCard color={color}>
       <Box display="grid" gap={4}>
         {list && (
           <OrderHeader
-            totalCost={list.total_discount_cost}
-            active={active}
+            totalCost={!showCounter ? totalCountOfItems() : undefined}
             color={color}
+            name={name}
+            avatar={avatar}
           />
         )}
         {list &&
-          list.items.map((item) => (
-            <div key={item.pk}>
-              <OrderProductCard showCounter={showCounter} item={item} active={active} color={color} />
+          list.items.map((item, index) => (
+            <div key={index}>
+              <OrderProductCard
+                handleChangeCount={handleChangeCount}
+                showCounter={showCounter}
+                item={item}
+                color={color}
+              />
             </div>
           ))}
       </Box>

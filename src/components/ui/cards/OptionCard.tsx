@@ -4,6 +4,7 @@ import { FC } from "react";
 
 interface OptionCardProps extends CardProps {
   active?: boolean;
+  color?: string;
 }
 
 const OptionCard: FC<OptionCardProps> = (props) => {
@@ -15,14 +16,10 @@ const OptionCard: FC<OptionCardProps> = (props) => {
       sx={{
         ...props.sx,
         border: `1px solid ${
-          props.active
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText
+          props.color ? props.color : theme.palette.primary.contrastText
         }`,
         bgcolor: alpha(
-          props.active
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText,
+          props.color ? props.color : theme.palette.primary.contrastText,
           0.16
         ),
         transition: "all 0.3s",

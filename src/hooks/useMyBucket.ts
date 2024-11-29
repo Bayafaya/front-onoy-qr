@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
+import { getBucket } from "../services/bucket";
 import { IOrder } from "../interfaces/order";
-import { getBucketAndOrder } from "../services/bucket";
 
 
-export const useOrder = () => {
+export const useMyBucket = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [data, setData] = useState<IOrder>({} as IOrder);
 
-    const fetchOrder = async () => {
+    const fetchBucket = async () => {
         setIsLoading(true);
         const access = localStorage.getItem("access");
         const client_id = localStorage.getItem("client_id");
         try {
-            const response = await getBucketAndOrder({ qr_code_id: access || "", client_id: client_id || "" });
+            const response = await getBucket({ qr_code_id: access || "", client_id: client_id || "" });
             if (response.status === 200) {
                 setData(response.data);
             }
@@ -23,11 +23,11 @@ export const useOrder = () => {
     }
 
     useEffect(() => {
-        fetchOrder()
+        fetchBucket()
     }, [])
 
-    return { data, setData, isLoading, setIsLoading, fetchOrder }
+    return { data, setData, isLoading, setIsLoading, fetchBucket }
 }
 
 
-export default useOrder;
+export default useMyBucket;
