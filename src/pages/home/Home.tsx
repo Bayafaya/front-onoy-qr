@@ -17,7 +17,7 @@ const Home = () => {
 
   
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue.toString());
   };
 

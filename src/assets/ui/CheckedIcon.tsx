@@ -1,4 +1,4 @@
-import { SVGProps } from "../../interfaces/svgProps";
+import { SVGProps } from "../../interfaces/SVGProps";
 
 const CheckedIcon = ({ width, height, color }: SVGProps) => {
   return (

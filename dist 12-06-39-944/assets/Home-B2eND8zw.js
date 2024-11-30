@@ -1,1 +1,0 @@
-import{j as t}from"./index-CSoid8Gk.js";import{B as m}from"./Box-Bs5hqSY-.js";import"./generateUtilityClasses-C1byPOSS.js";const r={display:"grid",height:"100%",width:"100%",gap:8,gridTemplateColumns:{xs:"100%",xl:"repeat(3, minmax(0, 1fr))"},gridTemplateRows:"minmax(0, max-content)"},a=()=>t.jsx(m,{sx:r});export{a as default};
