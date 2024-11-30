@@ -1,4 +1,5 @@
-import { SVGProps } from "../../interfaces/svgProps";
+import { SVGProps } from "../../interfaces/SVGProps";
+
 
 const NonCheckedIcon = ({ width, height, color }: SVGProps) => {
   return (
