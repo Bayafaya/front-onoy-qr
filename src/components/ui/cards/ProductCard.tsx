@@ -76,6 +76,7 @@ const ProductCard = (props: ProductCardProps) => {
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
             WebkitLineClamp: 2,
+            pb: 2,
           }}
         >
           {props.description}
