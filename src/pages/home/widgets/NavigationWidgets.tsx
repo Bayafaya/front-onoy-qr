@@ -13,8 +13,8 @@ const NavigationWidgets = () => {
   return (
     <Box display="grid" gap={8} mb={6}>
       <Grid2 display="flex" alignItems="center" justifyContent="space-between">
-        <ButtonFillIcon>
-          <GlobeIcon width={28} height={28} color={theme.palette.white} />
+        <ButtonFillIcon onClick={() => navigate("/welcome")}>
+          <GlobeIcon  width={28} height={28} color={theme.palette.white} />
         </ButtonFillIcon>
         <Typography
           variant="h1"

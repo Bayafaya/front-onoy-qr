@@ -99,7 +99,7 @@ const Basket = () => {
           </Typography>
           <Box sx={{ width: "260px" }}>
             <AccentButton fullWidth onClick={goToKitchen}>
-              Add to card
+              Send to kitchen
             </AccentButton>
           </Box>
         </Box>
