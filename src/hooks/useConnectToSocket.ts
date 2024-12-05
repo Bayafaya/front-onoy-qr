@@ -29,7 +29,7 @@ export const useConnectToSocket = () => {
             ws.send(JSON.stringify(
                 {
                     action: 'sendmessage',
-                    message: JSON.stringify(value),
+                    message: value,
                 },
             ));
         }
