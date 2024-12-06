@@ -108,7 +108,7 @@ const Basket = () => {
             {`${totalCost} c`}
           </Typography>
           <Box sx={{ width: "260px" }}>
-            <AccentButton fullWidth onClick={goToKitchen} disabled={isSending}>
+            <AccentButton fullWidth onClick={goToKitchen} disabled={isSending || !data?.client_items?.bucket?.items.length}>
               {isSending ? "Отправка..." : "Добавить в кухню"}
             </AccentButton>
           </Box>
