@@ -6,10 +6,12 @@ import { confirmBucket } from "../../../services/bucket";
 import { useEffect, useMemo, useState } from "react";
 import useMyBucket from "../../../hooks/useMyBucket";
 import useConnectToSocket from "../../../hooks/useConnectToSocket";
+import BasketSkeleton from "../../../components/ui/skeleton/BasketSkeleton";
 
 const Basket = () => {
+  const [isSending, setIsSending] = useState(false);
   const { sendMessage } = useConnectToSocket();
-  const { data, fetchBucket } = useMyBucket();
+  const { data, fetchBucket, isLoading } = useMyBucket();
   const [body, setBody] = useState<
     { [key: string]: number; totalCost: number }[]
   >([]);
@@ -48,6 +50,7 @@ const Basket = () => {
 
   const goToKitchen = async () => {
     try {
+      setIsSending(true);
       const access = localStorage.getItem("access");
       const client_id = localStorage.getItem("client_id");
       const response = await confirmBucket({
@@ -58,6 +61,7 @@ const Basket = () => {
         }),
       });
       if (response.status === 200) {
+        setIsSending(false);
         sendMessage(access || "");
         await fetchBucket();
       }
@@ -77,15 +81,21 @@ const Basket = () => {
         gap: 3,
       }}
     >
-      {data.client_items && (
-        <OrderCard
-          handleChangeCount={handleChangeCount}
-          showCounter={true}
-          list={data.client_items.bucket}
-          color={data.client_items.client.color}
-          name={data.client_items.client.name}
-          avatar={data.client_items.client.avatar}
-        />
+      {isLoading ? (
+        <BasketSkeleton animation="wave" />
+      ) : (
+        <>
+          {data.client_items && (
+            <OrderCard
+              handleChangeCount={handleChangeCount}
+              showCounter={true}
+              list={data.client_items.bucket}
+              color={data.client_items.client.color}
+              name={data.client_items.client.name}
+              avatar={data.client_items.client.avatar}
+            />
+          )}
+        </>
       )}
       <BottomFloatCard>
         <Box
@@ -98,8 +108,8 @@ const Basket = () => {
             {`${totalCost} c`}
           </Typography>
           <Box sx={{ width: "260px" }}>
-            <AccentButton fullWidth onClick={goToKitchen}>
-              Send to kitchen
+            <AccentButton fullWidth onClick={goToKitchen} disabled={isSending}>
+              {isSending ? "Отправка..." : "Добавить в кухню"}
             </AccentButton>
           </Box>
         </Box>

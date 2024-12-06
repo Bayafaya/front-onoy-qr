@@ -14,6 +14,10 @@ const AccentButton: FC<ButtonProps> = (props) => {
         fontWeight: 600,
         color: theme.palette.white,
         height: "48px",
+        "&:disabled": {
+          backgroundColor: theme.palette.grey[400],
+        },
+        transform: "all 0.3s",
       }}
     >
       {props.children}
