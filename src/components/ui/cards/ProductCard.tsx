@@ -54,8 +54,6 @@ const ProductCard = (props: ProductCardProps) => {
       >
         <Typography
           variant="h5"
-          height={"18px"}
-          mb={2}
           sx={{
             width: "100%",
             overflow: "hidden",
@@ -76,7 +74,7 @@ const ProductCard = (props: ProductCardProps) => {
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
             WebkitLineClamp: 2,
-            pb: 2,
+            pt: 1,
           }}
         >
           {props.description}

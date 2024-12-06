@@ -3,9 +3,10 @@ import OrderCard from "./OrderCard";
 import BottomFloatCard from "../../../components/ui/float/BottomFloatCard";
 import { useTheme } from "@emotion/react";
 import useConfirmed from "../../../hooks/useConfirmed";
+import BasketSkeleton from "../../../components/ui/skeleton/BasketSkeleton";
 
 const MyTable = () => {
-  const { data } = useConfirmed();
+  const { data, isLoading } = useConfirmed();
   const theme = useTheme();
   return (
     <Box
@@ -14,21 +15,27 @@ const MyTable = () => {
         gap: 3,
       }}
     >
-      {data.client_items &&
-        data.client_items.confirmed.map((item, index) => (
-          <OrderCard
-            key={index}
-            list={{
-              items: item.confirmed.items,
-              total_original_cost: item.total.total_original_cost,
-              total_discount_cost: item.total.total_discount_cost,
-            }}
-            color={item.client.color}
-            showCounter={false}
-            avatar={item.client.avatar}
-            name={item.client.name}
-          />
-        ))}
+      {isLoading ? (
+        <BasketSkeleton animation="wave" />
+      ) : (
+        <>
+          {data.client_items &&
+            data.client_items.confirmed.map((item, index) => (
+              <OrderCard
+                key={index}
+                list={{
+                  items: item.confirmed.items,
+                  total_original_cost: item.total.total_original_cost,
+                  total_discount_cost: item.total.total_discount_cost,
+                }}
+                color={item.client.color}
+                showCounter={false}
+                avatar={item.client.avatar}
+                name={item.client.name}
+              />
+            ))}
+        </>
+      )}
       <BottomFloatCard bgColor={theme.palette.primary.main}>
         <Box display="flex" alignItems="center" justifyContent="center">
           <Typography color={theme.palette.white} variant="h2" paddingY="10px">

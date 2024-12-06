@@ -93,8 +93,6 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
       >
         <Typography
           variant="h5"
-          height={"18px"}
-          mb={2}
           sx={{
             width: "100%",
             overflow: "hidden",
@@ -107,8 +105,6 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
         </Typography>
         <Typography
           variant="body1"
-          mb={2}
-          pt={1}
           sx={{
             color: theme.palette.secondary.contrastText,
             width: "100%",
@@ -118,10 +114,11 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
             WebkitLineClamp: 2,
             position: "relative",
             pr: 8,
+            pb: 2,
           }}
         >
           {item.description}
-          {item.modifiers.length && (
+          {!!item.modifiers.length && (
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -129,7 +126,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
               aria-label="show more"
               sx={{
                 position: "absolute",
-                bottom: -4,
+                bottom: 4,
                 right: 0,
               }}
             >
@@ -224,12 +221,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
               </Typography>
             )}
           </Grid2>
-          <Typography
-            variant="h5"
-            display="flex"
-            align="center"
-            gap={1}
-          >
+          <Typography variant="h5" display="flex" align="center" gap={1}>
             <Typography fontWeight={700}>Итог:</Typography> {totalCost} с
           </Typography>
         </Box>
