@@ -42,7 +42,7 @@ const Welcome = () => {
       </Box>
       <Grid2 sx={mainGrid}>
         <img
-          src="src/assets/welcome/navat.png"
+          src="static/navat.png"
           alt="brand logo"
           style={{ width: "320px" }}
         />

@@ -28,7 +28,7 @@ const WelcomeContent = styled(Paper)`
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     flex: none;
   }
-  background-image: url("src/assets/welcome/bg-pattern.png");
+  background-image: url("static/bg-pattern.png");
   .MuiPaper-root .MuiPaper-root {
     box-shadow: none;
   }
