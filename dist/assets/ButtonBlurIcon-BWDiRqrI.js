@@ -1,1 +1,0 @@
-import{j as o}from"./index-D5DSkeF1.js";import{I as t}from"./GlobeIcon-5fnF1emq.js";const i=r=>o.jsx(t,{...r,sx:{border:"1px solid rgba(255, 255, 255, 1)",backgroundColor:"rgba(255, 255, 255, 0.25)",backdropFilter:"blur(2px)",borderRadius:"8px !important"},children:r.children});export{i as B};
