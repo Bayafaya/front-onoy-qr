@@ -12,7 +12,7 @@ const NavigationOrders = () => {
   return (
     <Box display="grid" gap={8} mb={6}>
       <Grid2 display="flex" alignItems="center" justifyContent="space-between">
-        <ButtonFillIcon onClick={() => navigate(-1)}>
+        <ButtonFillIcon onClick={() => navigate("/")}>
           <ArrowBackIosRoundedIcon
             sx={{
               color: theme.palette.white,

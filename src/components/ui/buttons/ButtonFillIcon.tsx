@@ -9,10 +9,8 @@ const ButtonFillIcon: FC<IconButtonProps> = (props) => {
         bgcolor: "rgba(91, 65, 166, 1)",
         border: "1px solid transparent",
         borderRadius: "8px",
-        "&: active": {
+        "&: hover": {
           bgcolor: "rgba(91, 65, 166, 1)",
-          border: "1px solid transparent",
-          borderRadius: "8px",
         },
       }}
     >
