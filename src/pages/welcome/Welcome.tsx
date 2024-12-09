@@ -1,11 +1,11 @@
 import { Box, Grid2, Typography } from "@mui/material";
-import GlobeIcon from "../../assets/ui/GlobeIcon";
-import ButtonBlurIcon from "../../components/ui/buttons/ButtonBlurIcon";
 import ButtonBlur from "../../components/ui/buttons/ButtonBlur";
 import OnoyLogo from "../../assets/OnoyLogo";
 import { useLocation, useNavigate } from "react-router";
 import { useTheme } from "@emotion/react";
 import { useEffect } from "react";
+import LangButton from "../../components/ui/buttons/LangButton";
+import { useTranslation } from "react-i18next";
 
 const mainGrid = {
   position: "absolute",
@@ -18,6 +18,7 @@ const mainGrid = {
 };
 
 const Welcome = () => {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -36,9 +37,7 @@ const Welcome = () => {
   return (
     <Grid2 sx={{ position: "relative", height: "100%", width: "100%" }}>
       <Box sx={{ position: "absolute", right: 0 }}>
-        <ButtonBlurIcon>
-          <GlobeIcon color={theme.palette.white} width={28} height={28} />
-        </ButtonBlurIcon>
+        <LangButton blur />
       </Box>
       <Grid2 sx={mainGrid}>
         <img
@@ -57,7 +56,7 @@ const Welcome = () => {
           }}
           onClick={() => navigate("/")}
         >
-          начать заказ
+          {t("startOrdering")}
         </ButtonBlur>
       </Grid2>
 
@@ -77,7 +76,7 @@ const Welcome = () => {
       >
         <OnoyLogo width={60} height={60} />
         <Typography color={theme.palette.white}>
-          ONOY - Упрощай каждый шаг
+          {t("simplifyEveryStep", { brand: "ONOY" })}
         </Typography>
       </Box>
     </Grid2>

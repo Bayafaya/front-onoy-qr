@@ -13,8 +13,10 @@ import useSingleFood from "../../hooks/useSingleFood";
 import { toBucket } from "../../services/bucket";
 import DetailSkeleton from "../../components/ui/skeleton/DetailSkeleton";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Detail = () => {
+  const { t } = useTranslation();
   const [isSending, setIsSending] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -96,7 +98,7 @@ const Detail = () => {
             onClick={addToBucket}
             disabled={!selectedOption.id || isSending}
           >
-            {isSending ? "Отправка..." : "Добавить в корзину"}
+            {isSending ? `${t("sending")}...` : t("addToBucket")}
           </AccentButton>
         </Box>
       </BottomFloatCard>

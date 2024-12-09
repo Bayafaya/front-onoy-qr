@@ -1,0 +1,22 @@
+{
+  "bucket": "Bucket",
+  "myTable": "My table",
+  "startOrdering": "Start ordering",
+  "simplifyEveryStep": "{{brand}} - Simplify every step",
+  "foodSearch": "Food search",
+  "weight": "Weight",
+  "waitTime": "Wait time",
+  "showLess": "Show less",
+  "more": "more",
+  "required": "Required",
+  "selected": "Selected",
+  "options": "Options",
+  "choose": "Choose",
+  "modifiers": "Modifiers",
+  "sending": "Sending",
+  "addToBucket": "Add to bucket",
+  "addToKitchen": "Add to kitchen",
+  "totalPrice": "Total price",
+  "count": "Count",
+  "amount": "Amount"
+}

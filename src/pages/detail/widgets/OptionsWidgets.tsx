@@ -13,13 +13,13 @@ import { useTheme } from "@emotion/react";
 import { IFoodOptions } from "../../../interfaces/food";
 import CheckedIcon from "../../../assets/ui/CheckedIcon";
 import NonCheckedIcon from "../../../assets/ui/NonCheckedIcon";
+import { useTranslation } from "react-i18next";
 
 type OptionsWidgetsProps = {
   active?: boolean;
   foodOptions: IFoodOptions[];
   setSelectedOption: (option: IFoodOptions) => void;
   selectedOption: IFoodOptions;
-
 };
 
 const OptionsWidgets = ({
@@ -28,6 +28,7 @@ const OptionsWidgets = ({
   setSelectedOption,
   selectedOption,
 }: OptionsWidgetsProps) => {
+  const { t } = useTranslation();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
     const option = foodOptions.find((option) => option.option_name === value);
@@ -38,14 +39,14 @@ const OptionsWidgets = ({
     <OptionCard active={active}>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography variant="h1" fontWeight={600}>
-          Опции
+          {t("options")}
         </Typography>
         <FoodRequireTag active={active}>
-          {active ? "Обязательно" : "Выбрано"}
+          {active ? t("required") : t("selected")}
         </FoodRequireTag>
       </Box>
       <Typography variant="body2" fontWeight={500} mb={3}>
-        Выбери 1
+        {t("choose")} 1
       </Typography>
       <FormControl sx={{ width: "100%" }}>
         <RadioGroup
@@ -65,7 +66,11 @@ const OptionsWidgets = ({
                 },
               }}
               label={
-                <Label id={option.id} option_name={option.option_name} cost={option.cost} />
+                <Label
+                  id={option.id}
+                  option_name={option.option_name}
+                  cost={option.cost}
+                />
               }
             />
           ))}

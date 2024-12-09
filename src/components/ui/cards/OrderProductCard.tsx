@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Counter from "../../Counter";
 import { IFoodOrderResponse } from "../../../interfaces/food";
 import "../../../styles/OrderProductCard.css";
+import { useTranslation } from "react-i18next";
 
 interface OrderHeaderProps extends CardContentProps {
   item: IFoodOrderResponse;
@@ -33,6 +34,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
   handleChangeCount,
   ...props
 }) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [expanded, setExpanded] = useState(false);
   const [optionCount, setOptionCount] = useState(item.count);
@@ -146,7 +148,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
                 color={theme.palette.secondary.contrastText}
                 mb={2}
               >
-                Опции: <b>{item.options.option_name}</b>
+                {t("options")}: <b>{item.options.option_name}</b>
               </Typography>
               <Typography
                 variant="body1"
@@ -165,7 +167,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
                 variant="body1"
                 color={theme.palette.secondary.contrastText}
               >
-                Добавки:
+                {t("modifiers")}:
               </Typography>
               <ul
                 style={{
@@ -217,12 +219,13 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
                 color={theme.palette.secondary.contrastText}
                 fontWeight={700}
               >
-                Количество: {optionCount}
+                {t("count")}: {optionCount}
               </Typography>
             )}
           </Grid2>
           <Typography variant="h5" display="flex" align="center" gap={1}>
-            <Typography fontWeight={700}>Итог:</Typography> {totalCost} с
+            <Typography fontWeight={700}>{t("amount")}:</Typography> {totalCost}{" "}
+            с
           </Typography>
         </Box>
       </CardContent>
