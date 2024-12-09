@@ -1,26 +1,25 @@
+import { useTheme } from "@emotion/react";
 import { IconButton, IconButtonProps } from "@mui/material";
 import { FC } from "react";
-import styled from "@emotion/styled";
-
-const AccentColorBtn = styled(IconButton)`
-  background-color: ${(props) => props.theme.palette.primary.main};
-`;
 
 const ButtonFillIcon: FC<IconButtonProps> = (props) => {
+  const theme = useTheme();
   return (
-    <AccentColorBtn
+    <IconButton
       {...props}
       sx={{
+        bgcolor: theme.palette.primary.main,
         border: "1px solid transparent",
         borderRadius: "8px",
         "&:active": {
+          bgcolor: theme.palette.primary.main,
           border: "1px solid transparent",
           borderRadius: "8px",
         },
       }}
     >
       {props.children}
-    </AccentColorBtn>
+    </IconButton>
   );
 };
 
