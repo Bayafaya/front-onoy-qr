@@ -7,8 +7,10 @@ import { useEffect, useMemo, useState } from "react";
 import useMyBucket from "../../../hooks/useMyBucket";
 import useConnectToSocket from "../../../hooks/useConnectToSocket";
 import BasketSkeleton from "../../../components/ui/skeleton/BasketSkeleton";
+import { useTranslation } from "react-i18next";
 
 const Basket = () => {
+  const { t } = useTranslation();
   const [isSending, setIsSending] = useState(false);
   const { sendMessage } = useConnectToSocket();
   const { data, fetchBucket, isLoading } = useMyBucket();
@@ -108,8 +110,12 @@ const Basket = () => {
             {`${totalCost} c`}
           </Typography>
           <Box sx={{ width: "260px" }}>
-            <AccentButton fullWidth onClick={goToKitchen} disabled={isSending || !data?.client_items?.bucket?.items.length}>
-              {isSending ? "Отправка..." : "Добавить в кухню"}
+            <AccentButton
+              fullWidth
+              onClick={goToKitchen}
+              disabled={isSending || !data?.client_items?.bucket?.items.length}
+            >
+              {isSending ? `${t("sending")}...` : t("addToKitchen")}
             </AccentButton>
           </Box>
         </Box>

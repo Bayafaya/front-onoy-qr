@@ -1,12 +1,14 @@
 import { useTheme } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type DescriptionTextProps = {
   text: string;
 };
 
 const DescriptionText: FC<DescriptionTextProps> = ({ text }) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
@@ -28,32 +30,34 @@ const DescriptionText: FC<DescriptionTextProps> = ({ text }) => {
       my={6}
     >
       {text}
-      {text.length > 200 && <Button
-        onClick={toggleShowMore}
-        sx={{
-          paddingY: 0,
-          paddingLeft: showMore ? 0 : 2,
-          paddingRight: 0,
-          borderRadius: "500px",
-          position: "absolute",
-          bottom: showMore ? 0 : 2,
-          right: showMore ? "unset" : 2,
-          left: showMore ? 0 : "unset",
-          minWidth: 0,
-          height: "12px",
-          bgcolor: theme.palette.background.paper,
-        }}
-      >
-        <Typography
-          variant="h5"
+      {text.length > 200 && (
+        <Button
+          onClick={toggleShowMore}
           sx={{
-            fontWeight: 700,
-            color: theme.palette.secondary.contrastText,
+            paddingY: 0,
+            paddingLeft: showMore ? 0 : 2,
+            paddingRight: 0,
+            borderRadius: "500px",
+            position: "absolute",
+            bottom: showMore ? 0 : 2,
+            right: showMore ? "unset" : 2,
+            left: showMore ? 0 : "unset",
+            minWidth: 0,
+            height: "12px",
+            bgcolor: theme.palette.background.paper,
           }}
         >
-          {showMore ? "Show less" : "...more"}
-        </Typography>
-      </Button>}
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 700,
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            {showMore ? t("showLess") : `...${t("more")}`}
+          </Typography>
+        </Button>
+      )}
     </Typography>
   );
 };

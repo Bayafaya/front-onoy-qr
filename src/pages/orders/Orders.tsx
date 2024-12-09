@@ -7,7 +7,7 @@ import { TabContext } from "@mui/lab";
 import Basket from "./widgets/Basket";
 import MyTable from "./widgets/MyTable";
 
-const tabList = ["Корзина", "Мой стол"];
+const tabList = ["bucket", "myTable"];
 
 const Orders = () => {
   const [tab, setTab] = useState<string>("0");

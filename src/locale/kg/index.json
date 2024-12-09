@@ -1,0 +1,22 @@
+{
+  "bucket": "Себет",
+  "myTable": "Менин столум",
+  "startOrdering": "Заказ берүү",
+  "simplifyEveryStep": "{{brand}} - Ар бир кадамды жеңилдет",
+  "foodSearch": "Тамакты издөө",
+  "weight": "Салмагы",
+  "waitTime": "Күтүү уабактысы",
+  "showLess": "Жабуу",
+  "more": "көбүрөөк",
+  "required": "Мүлкөттү",
+  "selected": "Тандалган",
+  "options": "Опциялар",
+  "choose": "Тандоо",
+  "modifiers": "Кошумчалар",
+  "sending": "Жөнөтүү",
+  "addToBucket": "Себетке кошуу",
+  "addToKitchen": "Кухняга кошуу",
+  "totalPrice": "Жалпы баасы",
+  "count": "Саны",
+  "amount": "Суммасы"
+}

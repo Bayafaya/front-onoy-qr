@@ -1,9 +1,9 @@
 import { Grid2, Typography } from "@mui/material";
 import ButtonBlurIcon from "../../../components/ui/buttons/ButtonBlurIcon";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
-import GlobeIcon from "../../../assets/ui/GlobeIcon";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router";
+import LangButton from "../../../components/ui/buttons/LangButton";
 
 const NavHead = () => {
   const theme = useTheme();
@@ -31,9 +31,7 @@ const NavHead = () => {
       >
         Navat
       </Typography>
-      <ButtonBlurIcon>
-        <GlobeIcon width={28} height={28} color={theme.palette.white} />
-      </ButtonBlurIcon>
+      <LangButton blur />
     </Grid2>
   );
 };

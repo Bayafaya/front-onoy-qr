@@ -1,5 +1,6 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 type OrderHeaderProps = {
   color?: string;
@@ -14,7 +15,7 @@ const OrderHeader: FC<OrderHeaderProps> = ({
   name,
   avatar,
 }) => {
-
+  const { t } = useTranslation();
   return (
     <Grid2 display="flex" alignItems="center" justifyContent="space-between">
       <Box
@@ -28,15 +29,15 @@ const OrderHeader: FC<OrderHeaderProps> = ({
         }}
       >
         <img
-          src={avatar || ''}
+          src={avatar || ""}
           alt="animal"
           style={{ width: "40px", aspectRatio: "1/1" }}
         />
       </Box>
       <Typography variant="h1" mr="auto" ml={3} fontWeight={600}>
-        {name || "Корзина"}
+        {name || t("bucket")}
       </Typography>
-      <Typography variant="h1" fontWeight={600} >
+      <Typography variant="h1" fontWeight={600}>
         {totalCost && `${totalCost} c`}
       </Typography>
     </Grid2>

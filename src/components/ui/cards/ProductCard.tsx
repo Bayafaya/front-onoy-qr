@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
 
 interface ProductCardProps extends CardContentProps {
   title: string;
@@ -19,6 +20,7 @@ interface ProductCardProps extends CardContentProps {
 
 const ProductCard = (props: ProductCardProps) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -87,7 +89,7 @@ const ProductCard = (props: ProductCardProps) => {
                 color: theme.palette.secondary.contrastText,
               }}
             >
-              Вес: 300 г
+              {t("weight")}: 300 г
             </Typography>
             <Typography
               variant="body2"
@@ -95,7 +97,7 @@ const ProductCard = (props: ProductCardProps) => {
                 color: theme.palette.secondary.contrastText,
               }}
             >
-              Ожидание: {props.cook_time} м
+               {t("waitTime")}: {props.cook_time} м
             </Typography>
           </Grid2>
           <Typography

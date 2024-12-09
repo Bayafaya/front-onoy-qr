@@ -12,6 +12,7 @@ import { IFoodModifiers } from "../../../interfaces/food";
 import CheckedIcon from "../../../assets/ui/CheckedIcon";
 import NonCheckedIcon from "../../../assets/ui/NonCheckedIcon";
 import { SyntheticEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 type AdditionalWidgetProps = {
   foodModifiers: IFoodModifiers[];
@@ -24,10 +25,9 @@ const AdditionalWidget = ({
   selectedModifier,
   setSelectedModifier,
 }: AdditionalWidgetProps) => {
-  const handleChange = (
-    event: SyntheticEvent,
-    checked: boolean
-  ) => {
+  
+  const { t } = useTranslation();
+  const handleChange = (event: SyntheticEvent, checked: boolean) => {
     const value = (event.target as HTMLInputElement).value as string;
     const result = foodModifiers.find((modifier) => modifier.id === value);
     if (!result) return;
@@ -50,7 +50,7 @@ const AdditionalWidget = ({
       }}
     >
       <Typography variant="h1" fontWeight={600} mb={3}>
-        Добавки
+        {t("modifiers")}
       </Typography>
       <FormGroup>
         {foodModifiers.map((modifier, index) => (

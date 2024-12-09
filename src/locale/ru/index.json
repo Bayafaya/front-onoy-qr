@@ -1,0 +1,22 @@
+{
+  "bucket": "Корзина",
+  "myTable": "Мой стол",
+  "startOrdering": "Начать заказ",
+  "simplifyEveryStep": "{{brand}} - Упрощай каждый шаг",
+  "foodSearch": "Поиск еды",
+  "weight": "Вес",
+  "waitTime": "Время ожидания",
+  "showLess": "Закрыть",
+  "more": "больше",
+  "required": "Обязательно",
+  "selected": "Выбрано",
+  "options": "Опции",
+  "choose": "Выбрать",
+  "modifiers": "Добавки",
+  "sending": "Отправка",
+  "addToBucket": "Добавить в корзину",
+  "addToKitchen": "Добавить в кухню",
+  "totalPrice": "Общая сумма",
+  "count": "Количество",
+  "amount": "Сумма"
+}

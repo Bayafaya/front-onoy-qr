@@ -4,8 +4,10 @@ import BottomFloatCard from "../../../components/ui/float/BottomFloatCard";
 import { useTheme } from "@emotion/react";
 import useConfirmed from "../../../hooks/useConfirmed";
 import BasketSkeleton from "../../../components/ui/skeleton/BasketSkeleton";
+import { useTranslation } from "react-i18next";
 
 const MyTable = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = useConfirmed();
   const theme = useTheme();
   return (
@@ -39,7 +41,7 @@ const MyTable = () => {
       <BottomFloatCard bgColor={theme.palette.primary.main}>
         <Box display="flex" alignItems="center" justifyContent="center">
           <Typography color={theme.palette.white} variant="h2" paddingY="10px">
-            Общая сумма: {data.total_bill || "0"} с
+            {t("totalPrice")}: {data.total_bill || "0"} с
           </Typography>
         </Box>
       </BottomFloatCard>
