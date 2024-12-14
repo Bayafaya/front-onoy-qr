@@ -17,8 +17,6 @@ export const useConnectToSocket = () => {
             setMessages((prevMessages) => [...prevMessages, event.data as string]);
         };
 
-
-
         return () => {
             socket.close();
         };
