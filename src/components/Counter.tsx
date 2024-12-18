@@ -39,10 +39,10 @@ const Counter = ({
         onClick={decrement}
         sx={{
           border: `1px solid ${theme.palette.secondary.contrastText}`,
-          padding: count <= 1 ? "6px" : "8px",
+          padding: (count <= 1 && showDeleteButton) ? "6px" : "8px",
         }}
       >
-        {count <= 1 ? (
+        {(count <= 1 && showDeleteButton) ? (
           <TrashIcon width={12} height={12} />
         ) : (
           <MinusIcon width={size} height={size} />
