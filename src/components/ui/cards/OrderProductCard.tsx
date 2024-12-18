@@ -46,7 +46,10 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
     const result = calcTotalCost(value);
     setTotalCost(result);
     setOptionCount(value);
-    if(value === 0 && deleteOrder) deleteOrder(item._id);
+    if (value < 1 && deleteOrder) {
+      deleteOrder(item._id);
+      return;
+    }
     if (handleChangeCount)
       handleChangeCount({ [item._id]: value, totalCost: result });
   };
