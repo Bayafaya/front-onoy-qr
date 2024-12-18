@@ -47,7 +47,7 @@ const StoriesWidget = ({
 
     if (touchEndY.current - touchStartY.current > 100) {
       // Swipe down
-      close();
+      handleClose();
     }
   };
 
