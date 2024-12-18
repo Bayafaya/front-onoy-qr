@@ -58,7 +58,7 @@ const StoriesWidget = ({
           <Avatar
             onClick={() => handleOpen()}
             sx={{ height: 64, width: 64 }}
-            alt="Remy Sharp"
+            alt="story"
             src={stories[0].url}
           />
         </CircleBox>

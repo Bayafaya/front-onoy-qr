@@ -28,6 +28,7 @@ const stories: Story[] = [
 const Home = () => {
   const { t } = useTranslation();
   const { category, isLoading } = useCategory();
+
   const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
   const [tab, setTab] = useState<string>("0");

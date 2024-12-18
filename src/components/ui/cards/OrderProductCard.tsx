@@ -26,12 +26,14 @@ interface OrderHeaderProps extends CardContentProps {
     [key: string]: number;
     totalCost: number;
   }) => void;
+  deleteOrder?: (orderId: string) => void;
 }
 
 const OrderProductCard: FC<OrderHeaderProps> = ({
   item,
   showCounter,
   handleChangeCount,
+  deleteOrder,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -44,6 +46,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
     const result = calcTotalCost(value);
     setTotalCost(result);
     setOptionCount(value);
+    if(value === 0 && deleteOrder) deleteOrder(item._id);
     if (handleChangeCount)
       handleChangeCount({ [item._id]: value, totalCost: result });
   };
@@ -212,6 +215,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
                 count={optionCount}
                 setCount={handleCountChange}
                 size={8}
+                showDeleteButton={deleteOrder ? true : false}
               />
             ) : (
               <Typography
