@@ -15,6 +15,7 @@ type OrderCardProps = {
     [key: string]: number;
     totalCost: number;
   }) => void;
+  deleteOrder?: (orderId: string) => void;
 };
 
 const OrderCard: FC<OrderCardProps> = ({
@@ -24,6 +25,7 @@ const OrderCard: FC<OrderCardProps> = ({
   showCounter,
   name,
   handleChangeCount,
+  deleteOrder,
 }) => {
   const totalCountOfItems = () => {
     return list?.items.reduce((acc, item) => {
@@ -49,6 +51,7 @@ const OrderCard: FC<OrderCardProps> = ({
                 showCounter={showCounter}
                 item={item}
                 color={color}
+                deleteOrder={deleteOrder}
               />
             </div>
           ))}

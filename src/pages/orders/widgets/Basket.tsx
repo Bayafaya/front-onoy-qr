@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import OrderCard from "./OrderCard";
 import BottomFloatCard from "../../../components/ui/float/BottomFloatCard";
 import AccentButton from "../../../components/ui/buttons/AccentButton";
-import { confirmBucket } from "../../../services/bucket";
+import { confirmBucket, deleteBucket } from "../../../services/bucket";
 import { useEffect, useMemo, useState } from "react";
 import useMyBucket from "../../../hooks/useMyBucket";
 import useConnectToSocket from "../../../hooks/useConnectToSocket";
@@ -72,6 +72,25 @@ const Basket = () => {
     }
   };
 
+  const deleteOrder = async (orderId: string) => {
+    try {
+      setIsSending(true);
+      const access = localStorage.getItem("access");
+      const client_id = localStorage.getItem("client_id");
+      const response = await deleteBucket({
+        qr_code_id: access || "",
+        client_id: client_id || "",
+        body: { item: orderId },
+      });
+      if (response.status === 200) {
+        setIsSending(false);
+        await fetchBucket();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const totalCost = useMemo(() => {
     return body.reduce((acc, item) => acc + item.totalCost, 0);
   }, [body]);
@@ -95,6 +114,7 @@ const Basket = () => {
               color={data.client_items.client.color}
               name={data.client_items.client.name}
               avatar={data.client_items.client.avatar}
+              deleteOrder={deleteOrder}
             />
           )}
         </>

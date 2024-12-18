@@ -27,7 +27,6 @@ function App({ emotionCache = clientSideEmotionCache }) {
     setTheme(THEMES.DEFAULT);
   }, [setTheme]);
 
-  
   return (
     <>
       <CacheProvider value={emotionCache}>
@@ -37,6 +36,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
           </Suspense>
         </MuiThemeProvider>
       </CacheProvider>
+      <div id="modal-root" />
     </>
   );
 }

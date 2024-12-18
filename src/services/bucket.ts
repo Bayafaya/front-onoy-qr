@@ -13,6 +13,14 @@ type ConfirmBucket = {
     client_id?: string
 }
 
+type deleteBucket = {
+    qr_code_id: string;
+    body?: {
+        item: string;
+    }
+    client_id?: string
+}
+
 export const toBucket = async ({ qr_code_id, body, client_id }: Bucket) => {
     return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/add",
         body,
@@ -59,6 +67,29 @@ export const getOrder = async ({ qr_code_id, client_id }: Bucket) => {
 
 export const confirmBucket = async ({ qr_code_id, body, client_id }: ConfirmBucket) => {
     return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/confirm",
+        body,
+        {
+            params: {
+                qr_code_id,
+                client_id
+            }
+        }
+    )
+}
+
+export const countOfBucket = async ({ qr_code_id, client_id }: Bucket) => {
+    return await axios.get("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/count",
+        {
+            params: {
+                qr_code_id,
+                client_id
+            }
+        }
+    )
+}
+
+export const deleteBucket = async ({ qr_code_id, client_id, body }: deleteBucket) => {
+    return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/delete",
         body,
         {
             params: {
