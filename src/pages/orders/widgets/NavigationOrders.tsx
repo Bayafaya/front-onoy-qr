@@ -25,7 +25,7 @@ const NavigationOrders = () => {
           textTransform="uppercase"
           color={theme.palette.primary.contrastText}
         >
-          Navat
+          ONOY
         </Typography>
         <LangButton />
       </Grid2>

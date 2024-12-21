@@ -20,7 +20,7 @@ const NavigationWidgets = () => {
           textTransform="uppercase"
           color={theme.palette.primary.contrastText}
         >
-          navat
+          ONOY
         </Typography>
         <Badge badgeContent={countOfOrder} color="error" max={50}>
           <ButtonFillIcon onClick={() => navigate("/orders")}>

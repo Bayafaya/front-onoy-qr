@@ -18,10 +18,10 @@ import SearchInput from "../../components/ui/inputs/SearchInput";
 
 const stories: Story[] = [
   {
-    url: "https://images.unsplash.com/photo-1534856966153-c86d43d53fe0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80",
+    url: "/static/banner-1.jpg",
   },
   {
-    url: "/static/photo_2024-12-14_07-37-18.jpg",
+    url: "/static/banner-2.jpg",
   },
 ];
 

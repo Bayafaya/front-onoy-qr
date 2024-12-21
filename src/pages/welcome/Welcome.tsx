@@ -14,6 +14,7 @@ const mainGrid = {
   transform: "translate(-50%, -50%)",
   width: "100%",
   display: "grid",
+  gap: 6,
   placeItems: "center",
 };
 
@@ -41,9 +42,9 @@ const Welcome = () => {
       </Box>
       <Grid2 sx={mainGrid}>
         <img
-          src="static/navat.png"
+          src="/onou-logo.svg"
           alt="brand logo"
-          style={{ width: "320px" }}
+          style={{ width: "320px", height: "120px", }}
         />
         <ButtonBlur
           sx={{

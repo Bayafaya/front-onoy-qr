@@ -29,7 +29,7 @@ const NavHead = () => {
         color={theme.palette.white}
         zIndex={1}
       >
-        Navat
+        ONOY
       </Typography>
       <LangButton blur />
     </Grid2>

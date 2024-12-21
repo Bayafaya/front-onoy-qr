@@ -1,10 +1,12 @@
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import Stories from "react-insta-stories";
 import CloseIcon from "@mui/icons-material/Close";
 import { Story } from "react-insta-stories/dist/interfaces";
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
+import { useTheme } from "@emotion/react";
+import CircleStory from "../../../components/insta-story/CircleStory";
 
 const CircleBox = styled(Box)`
   border: 2px solid ${({ theme }) => theme.palette.primary.main};
@@ -26,6 +28,7 @@ const StoriesWidget = ({
   stories,
   handleOpen,
 }: StoriesWidgetProps) => {
+  const theme = useTheme();
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
@@ -53,16 +56,24 @@ const StoriesWidget = ({
 
   return (
     <>
-      <Box>
-        <CircleBox>
-          <Avatar
-            onClick={() => handleOpen()}
-            sx={{ height: 64, width: 64 }}
-            alt="story"
-            src={stories[0].url}
-          />
-        </CircleBox>
+      <Box
+        display="flex"
+        alignItems="center"
+        gap={3}
+        width={"99%"}
+        sx={{
+          scrollbarWidth: "none",
+        }}
+        overflow={"scroll"}
+      >
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
+        <CircleStory onOpen={handleOpen} poster={stories[0].url} />
       </Box>
+
       {open &&
         createPortal(
           <Box
