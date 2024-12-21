@@ -1,19 +1,12 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import Stories from "react-insta-stories";
 import CloseIcon from "@mui/icons-material/Close";
 import { Story } from "react-insta-stories/dist/interfaces";
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
-import styled from "@emotion/styled";
-import { useTheme } from "@emotion/react";
 import CircleStory from "../../../components/insta-story/CircleStory";
 
-const CircleBox = styled(Box)`
-  border: 2px solid ${({ theme }) => theme.palette.primary.main};
-  padding: 2px;
-  border-radius: 100%;
-  width: fit-content;
-`;
+
 
 type StoriesWidgetProps = {
   open: boolean;
@@ -28,7 +21,6 @@ const StoriesWidget = ({
   stories,
   handleOpen,
 }: StoriesWidgetProps) => {
-  const theme = useTheme();
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
