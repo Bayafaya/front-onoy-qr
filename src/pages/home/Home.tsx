@@ -60,14 +60,14 @@ const Home = () => {
         <TabContext value={tab}>
           <FoodTabsWidgets
             value={+tab}
-            tabList={category}
+            tabList={category.map((item) => item.name)}
             onChange={handleChange}
           />
           {isLoadingProducts ? (
             <HomeSkeleton animation="wave" />
           ) : (
             category.map((item, index) => (
-              <TabCustomPanel key={item} value={`${index}`}>
+              <TabCustomPanel key={item._id} value={`${index}`}>
                 {data.map((item) => (
                   <ProductCard
                     key={item.pk}

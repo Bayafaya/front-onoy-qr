@@ -56,7 +56,7 @@ const Detail = () => {
       if (response.status === 200) {
         setIsSending(false);
         localStorage.setItem("client_id", response.data.client_id);
-        navigate("/orders");
+        navigate("/");
       }
     } catch (e) {
       console.log(e);

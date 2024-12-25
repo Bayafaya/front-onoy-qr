@@ -33,17 +33,29 @@ const ProductCard = (props: ProductCardProps) => {
       }}
       {...props}
     >
-      <CardMedia
-        component="img"
-        sx={{
-          height: "72%",
-          width: "90px",
-          borderRadius: "12px",
-          marginX: "16px",
-        }}
-        image={props.image}
-        alt="Live from space album cover"
-      />
+      {props.image ? (
+        <CardMedia
+          component="img"
+          sx={{
+            height: "72%",
+            width: "90px",
+            borderRadius: "12px",
+            marginX: "16px",
+          }}
+          image={props.image}
+          alt="Live from space album cover"
+        />
+      ) : (
+        <Box
+          sx={{
+            height: "72%",
+            width: "90px",
+            borderRadius: "12px",
+            marginX: "16px",
+            backgroundColor: theme.palette.grey[400],
+          }}
+        />
+      )}
       <CardContent
         sx={{
           display: "flex",
@@ -97,7 +109,7 @@ const ProductCard = (props: ProductCardProps) => {
                 color: theme.palette.secondary.contrastText,
               }}
             >
-               {t("waitTime")}: {props.cook_time} м
+              {t("waitTime")}: {props.cook_time} м
             </Typography>
           </Grid2>
           <Typography
