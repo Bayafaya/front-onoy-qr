@@ -22,7 +22,7 @@ type deleteBucket = {
 }
 
 export const toBucket = async ({ qr_code_id, body, client_id }: Bucket) => {
-    return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/add",
+    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/add`,
         body,
         {
             params: {
@@ -34,7 +34,7 @@ export const toBucket = async ({ qr_code_id, body, client_id }: Bucket) => {
 }
 
 export const getBucketAndOrder = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/order/get-my",
+    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/order/get-my`,
         {
             params: {
                 qr_code_id,
@@ -44,7 +44,7 @@ export const getBucketAndOrder = async ({ qr_code_id, client_id }: Bucket) => {
     )
 }
 export const getBucket = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/get-my",
+    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/get-my`,
         {
             params: {
                 qr_code_id,
@@ -54,7 +54,7 @@ export const getBucket = async ({ qr_code_id, client_id }: Bucket) => {
     )
 }
 export const getOrder = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/order/get-my-confirm",
+    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/order/get-my-confirm`,
         {
             params: {
                 qr_code_id,
@@ -66,7 +66,7 @@ export const getOrder = async ({ qr_code_id, client_id }: Bucket) => {
 
 
 export const confirmBucket = async ({ qr_code_id, body, client_id }: ConfirmBucket) => {
-    return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/confirm",
+    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/confirm`,
         body,
         {
             params: {
@@ -78,7 +78,7 @@ export const confirmBucket = async ({ qr_code_id, body, client_id }: ConfirmBuck
 }
 
 export const countOfBucket = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/count",
+    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/count`,
         {
             params: {
                 qr_code_id,
@@ -89,7 +89,7 @@ export const countOfBucket = async ({ qr_code_id, client_id }: Bucket) => {
 }
 
 export const deleteBucket = async ({ qr_code_id, client_id, body }: deleteBucket) => {
-    return await axios.put("https://j7fs17an5h.execute-api.eu-north-1.amazonaws.com/demo_onoy/client/bucket/delete",
+    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/delete`,
         body,
         {
             params: {
