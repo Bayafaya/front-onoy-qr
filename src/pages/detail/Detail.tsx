@@ -34,12 +34,10 @@ const Detail = () => {
 
   const addToBucket = async () => {
     if (!selectedOption.id) return;
-    const access = localStorage.getItem("access");
     const client_id = localStorage.getItem("client_id");
     try {
       setIsSending(true);
       const response = await toBucket({
-        qr_code_id: access || "",
         client_id: client_id || "",
         body: {
           items: [

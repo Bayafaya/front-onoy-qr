@@ -117,8 +117,8 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
             color: theme.palette.secondary.contrastText,
             width: "100%",
             overflow: "hidden",
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
+            // display: "-webkit-box",
+            // WebkitBoxOrient: "vertical",
             WebkitLineClamp: 2,
             position: "relative",
             pr: 8,
@@ -144,34 +144,48 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
         </Typography>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent sx={{ p: 0 }}>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
+            <Typography
+              variant="body1"
+              color={theme.palette.secondary.contrastText}
             >
-              <Typography
-                variant="body1"
-                color={theme.palette.secondary.contrastText}
-                mb={2}
-              >
-                {t("options")}: <b>{item.options.option_name}</b>
-              </Typography>
-              <Typography
-                variant="body1"
-                color={theme.palette.secondary.contrastText}
-                mb={2}
-              >
-                {item.options.cost} с
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
+              {t("options")}:
+            </Typography>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: "16px",
+                width: "100%",
               }}
             >
+              <li>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  my={2}
+                >
+                  <Typography
+                    variant="body1"
+                    fontWeight={700}
+                    color={theme.palette.secondary.contrastText}
+                  >
+                    {item.options.option_name}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color={theme.palette.secondary.contrastText}
+                  >
+                    {item.options.cost} с
+                  </Typography>
+                </Box>
+              </li>
+            </ul>
+
+      
               <Typography
                 variant="body1"
                 color={theme.palette.secondary.contrastText}
+                mb={2}
               >
                 {t("modifiers")}:
               </Typography>
@@ -208,7 +222,6 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
                   </li>
                 ))}
               </ul>
-            </Box>
           </CardContent>
         </Collapse>
         <Box display="flex" alignItems="center" justifyContent="space-between">
@@ -230,7 +243,12 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
               </Typography>
             )}
           </Grid2>
-          <Typography variant="h5" display="flex" align="center" gap={1}>
+          <Typography
+            variant="h5"
+            display="flex"
+            flexDirection={"column"}
+            gap={1}
+          >
             <Typography fontWeight={700}>{t("amount")}:</Typography> {totalCost}{" "}
             с
           </Typography>

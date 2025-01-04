@@ -1,104 +1,90 @@
-import axios from "axios"
 import { IBucketPost } from "../interfaces/bucket";
+import axiosInstance from "../utils/axiosInstance";
 
 type Bucket = {
-    qr_code_id: string;
-    body?: IBucketPost;
-    client_id?: string
-}
+  body?: IBucketPost;
+  client_id?: string;
+};
 
 type ConfirmBucket = {
-    qr_code_id: string;
-    body?: { [key: string]: number }[];
-    client_id?: string
-}
+  body?: { [key: string]: number }[];
+  client_id?: string;
+};
 
 type deleteBucket = {
-    qr_code_id: string;
-    body?: {
-        item: string;
+  body?: {
+    item: string;
+  };
+  client_id?: string;
+};
+
+export const toBucket = async ({ body, client_id }: Bucket) => {
+  return await axiosInstance.put(`/client/bucket/add`, body, {
+    params: {
+      client_id,
+    },
+  });
+};
+
+export const getBucketAndOrder = async ({ client_id }: Bucket) => {
+  return await axiosInstance.get(`/client/order/get-my`, {
+    params: {
+      client_id,
+    },
+  });
+};
+export const getBucket = async ({ client_id }: Bucket) => {
+  return await axiosInstance.get(
+    `/client/bucket/get-my`,
+    {
+      params: {
+        client_id,
+      },
     }
-    client_id?: string
-}
+  );
+};
+export const getOrder = async ({ client_id }: Bucket) => {
+  return await axiosInstance.get(
+    `/client/order/get-my-confirm`,
+    {
+      params: {
+        client_id,
+      },
+    }
+  );
+};
 
-export const toBucket = async ({ qr_code_id, body, client_id }: Bucket) => {
-    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/add`,
-        body,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
+export const confirmBucket = async ({ body, client_id }: ConfirmBucket) => {
+  return await axiosInstance.put(
+    `/client/bucket/confirm`,
+    body,
+    {
+      params: {
+        client_id,
+      },
+    }
+  );
+};
 
-export const getBucketAndOrder = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/order/get-my`,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
-export const getBucket = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/get-my`,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
-export const getOrder = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/order/get-my-confirm`,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
+export const countOfBucket = async ({ client_id }: Bucket) => {
+  return await axiosInstance.get(
+    `/client/bucket/count`,
+    {
+      params: {
+        client_id,
+      },
+    }
+  );
+};
 
-
-export const confirmBucket = async ({ qr_code_id, body, client_id }: ConfirmBucket) => {
-    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/confirm`,
-        body,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
-
-export const countOfBucket = async ({ qr_code_id, client_id }: Bucket) => {
-    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/count`,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
-
-export const deleteBucket = async ({ qr_code_id, client_id, body }: deleteBucket) => {
-    return await axios.put(`${import.meta.env.VITE_BACKEND_URL}/client/bucket/delete`,
-        body,
-        {
-            params: {
-                qr_code_id,
-                client_id
-            }
-        }
-    )
-}
-
-
-
+export const deleteBucket = async ({ client_id, body }: deleteBucket) => {
+  return await axiosInstance.put(
+    `/client/bucket/delete`,
+    body,
+    {
+      params: {
+        client_id,
+      },
+    }
+  );
+};

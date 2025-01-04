@@ -9,10 +9,9 @@ export const useMyBucket = () => {
 
     const fetchBucket = async () => {
         setIsLoading(true);
-        const access = localStorage.getItem("access");
         const client_id = localStorage.getItem("client_id");
         try {
-            const response = await getBucket({ qr_code_id: access || "", client_id: client_id || "" });
+            const response = await getBucket({ client_id: client_id || "" });
             if (response.status === 200) {
                 setData(response.data);
             }

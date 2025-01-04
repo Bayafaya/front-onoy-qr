@@ -34,7 +34,7 @@ const Counter = ({
   };
 
   return (
-    <Box display="flex" alignItems="center" gap={1}>
+    <Box display="flex" alignItems="center" gap={"2px"}>
       <IconButton
         onClick={decrement}
         sx={{

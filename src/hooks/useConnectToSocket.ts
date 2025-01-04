@@ -22,12 +22,13 @@ export const useConnectToSocket = () => {
         };
     }, []);
 
-    const sendMessage = (value: string) => {
+    const sendMessage = () => {
+        const access = localStorage.getItem("access");
         if (ws) {
             ws.send(JSON.stringify(
                 {
                     action: 'sendmessage',
-                    message: value,
+                    message: access,
                 },
             ));
         }

@@ -28,10 +28,13 @@ const Welcome = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const access = queryParams.get("access");
-    if (access) {
+    const rest = queryParams.get("rest");
+    if (access && rest) {
       localStorage.setItem("access", access);
+      localStorage.setItem("rest", rest);
     } else {
       localStorage.removeItem("access");
+      localStorage.removeItem("rest");
     }
   }, []);
 

@@ -53,10 +53,8 @@ const Basket = () => {
   const goToKitchen = async () => {
     try {
       setIsSending(true);
-      const access = localStorage.getItem("access");
       const client_id = localStorage.getItem("client_id");
       const response = await confirmBucket({
-        qr_code_id: access || "",
         client_id: client_id || "",
         body: body.map((item) => {
           return { [Object.keys(item)[0]]: Object.values(item)[0] };
@@ -64,7 +62,7 @@ const Basket = () => {
       });
       if (response.status === 200) {
         setIsSending(false);
-        sendMessage(access || "");
+        sendMessage();
         await fetchBucket();
       }
     } catch (e) {
@@ -75,10 +73,8 @@ const Basket = () => {
   const deleteOrder = async (orderId: string) => {
     try {
       setIsSending(true);
-      const access = localStorage.getItem("access");
       const client_id = localStorage.getItem("client_id");
       const response = await deleteBucket({
-        qr_code_id: access || "",
         client_id: client_id || "",
         body: { item: orderId },
       });

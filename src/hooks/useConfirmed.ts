@@ -9,10 +9,9 @@ export const useConfirmed = () => {
 
     const fetchConfirmed = async () => {
         setIsLoading(true);
-        const access = localStorage.getItem("access");
         const client_id = localStorage.getItem("client_id");
         try {
-            const response = await getOrder({ qr_code_id: access || "", client_id: client_id || "" });
+            const response = await getOrder({ client_id: client_id || "" });
             if (response.status === 200) {
                 setData(response.data);
             }
