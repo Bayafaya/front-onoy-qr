@@ -134,7 +134,7 @@ const OrderProductCard: FC<OrderHeaderProps> = ({
               aria-label="show more"
               sx={{
                 position: "absolute",
-                bottom: 4,
+                bottom: 0,
                 right: 0,
               }}
             >
